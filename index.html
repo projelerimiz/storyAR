@@ -62,7 +62,6 @@
 
         h2 { color: var(--primary-color); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 20px; text-align: center; }
 
-        /* Galeri Stili */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -79,17 +78,9 @@
         }
 
         .gallery-item:hover { transform: scale(1.05); }
-
-        .gallery-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-        }
-
+        .gallery-item img { width: 100%; height: 150px; object-fit: cover; display: block; }
         .gallery-item p { font-size: 0.85rem; padding: 8px; margin: 0; font-weight: 600; }
 
-        /* İndirme Alanı */
         .download-area {
             display: flex;
             flex-wrap: wrap;
@@ -127,7 +118,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Tablo Stili */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -135,12 +125,7 @@
             background: white;
         }
 
-        th, td {
-            border: 1px solid #cbd5e1;
-            padding: 12px;
-            text-align: center;
-        }
-
+        th, td { border: 1px solid #cbd5e1; padding: 12px; text-align: center; }
         th { background-color: var(--primary-color); color: white; }
         tr:nth-child(even) { background-color: #f8fafc; }
 
@@ -149,6 +134,95 @@
             padding: 40px;
             background: var(--dark-bg);
             color: white;
+        }
+
+        /* --- CHATBOT STILLERI --- */
+        #chat-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+        }
+
+        #chat-button {
+            width: 65px;
+            height: 65px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            color: white;
+            font-size: 30px;
+            transition: 0.3s;
+        }
+
+        #chat-window {
+            display: none;
+            width: 360px;
+            height: 520px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            flex-direction: column;
+            overflow: hidden;
+            position: absolute;
+            bottom: 85px;
+            right: 0;
+            border: 1px solid #ddd;
+        }
+
+        #chat-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8fafc;
+        }
+
+        .message { padding: 10px 15px; border-radius: 15px; max-width: 80%; font-size: 0.9rem; }
+        .user-msg { background: var(--primary-color); align-self: flex-end; color: white; border-bottom-right-radius: 2px; }
+        .bot-msg { background: #e2e8f0; align-self: flex-start; color: var(--text-dark); border-bottom-left-radius: 2px; }
+
+        #chat-input-area {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background: white;
+        }
+
+        #chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 10px 15px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #send-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 50%;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -163,39 +237,23 @@
     <a href="#ozet">Özet</a>
     <a href="#galeri">Görseller</a>
     <a href="#indir">Uygulamayı İndir</a>
-    <a href="#bulgular">Test Bulguları</a>
+    
 </nav>
 
 <div class="container">
-    
     <section id="ozet" class="section">
-        <h2></h2>
+        <h2>Proje Özeti</h2>
         <p><strong>StoryAR</strong>, ortaokul düzeyindeki öğrencilerin günlük yaşamda ihtiyaç duyabilecekleri İngilizce konuşma becerilerini desteklemek için geliştirilmiş senaryo tabanlı bir mobil uygulamadır. Geleneksel yöntemlerin sınırlılıklarını aşarak öğrencilere güvenli ve etkileşimli bir pratik ortamı sunar.</p>
     </section>
 
     <section id="galeri" class="section">
         <h2>Uygulama İçi Görseller</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="resim/okul.jpeg" alt="Okul">
-                <p>Okul Sahnesi</p>
-            </div>
-            <div class="gallery-item">
-                <img src="resim/havaalanı.jpeg" alt="Havaalanı">
-                <p>Havaalanı Sahnesi</p>
-            </div>
-            <div class="gallery-item">
-                <img src="resim/market.jpeg" alt="Market">
-                <p>Market Sahnesi</p>
-            </div>
-            <div class="gallery-item">
-                <img src="resim/hastane.jpeg" alt="Hastane">
-                <p>Hastane Sahnesi</p>
-            </div>
-            <div class="gallery-item">
-                <img src="resim/otel.jpeg" alt="Otel">
-                <p>Otel Sahnesi</p>
-            </div>
+            <div class="gallery-item"><img src="resim/okul.jpeg" alt="Okul"><p>Okul Sahnesi</p></div>
+            <div class="gallery-item"><img src="resim/havaalanı.jpeg" alt="Havaalanı"><p>Havaalanı Sahnesi</p></div>
+            <div class="gallery-item"><img src="resim/market.jpeg" alt="Market"><p>Market Sahnesi</p></div>
+            <div class="gallery-item"><img src="resim/hastane.jpeg" alt="Hastane"><p>Hastane Sahnesi</p></div>
+            <div class="gallery-item"><img src="resim/otel.jpeg" alt="Otel"><p>Otel Sahnesi</p></div>
         </div>
     </section>
 
@@ -207,67 +265,250 @@
                 <img src="resim/qr-kod.png" alt="QR Kod">
                 <p style="font-size: 0.8rem; color: #64748b; margin-top: 10px;">QR kodu taratarak indirme işlemini başlatabilirsiniz.</p>
             </div>
-
             <div class="store-badge" style="text-align: center;">
                 <p><strong>Google Play Store</strong></p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" style="width: 200px; opacity: 0.6;">
-                <br>
                 <div class="coming-soon">Çok Yakında!</div>
             </div>
         </div>
     </section>
 
     <section id="bulgular" class="section">
-        <h2>Uygulama Test Verileri</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Ölçüt</th>
-                    <th>1. Deneme</th>
-                    <th>2. Deneme</th>
-                    <th>3. Deneme</th>
-                    <th>Ortalama / Durum</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>QR Kod Tarama (sn)</td>
-                    <td>1.3</td>
-                    <td>1.5</td>
-                    <td>1.2</td>
-                    <td><strong>1.33 sn</strong></td>
-                </tr>
-                <tr>
-                    <td>3D Model Yüklenme (sn)</td>
-                    <td>1.8</td>
-                    <td>1.9</td>
-                    <td>1.7</td>
-                    <td><strong>1.8 sn</strong></td>
-                </tr>
-                <tr>
-                    <td>QR Algılama Oranı</td>
-                    <td>%100</td>
-                    <td>%100</td>
-                    <td>%100</td>
-                    <td><strong>%100 Başarı</strong></td>
-                </tr>
-                <tr>
-                    <td>10 Dak. Pil Tüketimi</td>
-                    <td>%5</td>
-                    <td>%6</td>
-                    <td>%4</td>
-                    <td><strong>%5 Verimli</strong></td>
-                </tr>
-            </tbody>
-        </table>
-        <p style="margin-top:20px;"><em>Bulgu Özeti:</em> Yapılan testler sonucunda uygulamanın sınıf içi kullanımda zaman kaybına yol açmadığı, düşük pil tüketimi ve yüksek algılama performansı ile teknik açıdan stabil olduğu görülmüştür.</p>
-    </section>
+           </section>
+</div>
 
+<div id="chat-widget">
+    <div id="chat-window">
+        <div id="chat-header">
+            <span>📚 StoryAR Asistanı</span>
+            <span style="cursor:pointer; font-size: 20px;" onclick="toggleChat()">&times;</span>
+        </div>
+        <div id="chat-messages">
+            <div class="message bot-msg">Merhaba! StoryAR projesi ve İngilizce dil pratiği senaryolarımız hakkında ne öğrenmek istersin?</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Bir şey sor...">
+            <button id="send-btn" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+    <div id="chat-button" onclick="toggleChat()">💬</div>
 </div>
 
 <div class="footer">
     <p>© 2026 StoryAR | Unity & Vuforia tabanlı eğitim materyali</p>
 </div>
+
+<script>
+    // DEEPSEEK API KEY BURAYA
+    const DEEPSEEK_API_KEY = "sk-7ac4dd1326fa489096076a37e3979835"; 
+
+       const PROJE_VERILERI = `
+        
+Özet Yabancı dil öğretiminde konuşma becerilerinin geliştirilmesi, dünyada öne çıkan temel bir gereksinim olup, ülkemizde uzun yıllardır süren İngilizce eğitimine rağmen öğrencilerin özellikle konuşma becerisinde hedeflenen düzeye ulaşamaması ve bu alanda artırılmış gerçeklik tabanlı, konuşma odaklı yazılım materyallerinin eksikliği önemli bir problem durumu olarak karşımıza çıkmaktadır. Bu probleme çözüm üretmek amacıyla, ortaokul düzeyindeki öğrencilerin günlük yaşamda ihtiyaç duyabilecekleri İngilizce konuşma becerilerini desteklemek için “StoryAR” isimli senaryo tabanlı, artırılmış gerçeklik destekli bir mobil uygulama geliştirilmiş ve uygulamanın sınıf içi kullanılabilirliği öğretmen görüşleri doğrultusunda incelenmiştir. Mühendislik tasarım süreci kullanılarak geliştirilen StoryAR uygulamasında gerçek yaşam senaryolarına dayalı okul, havaalanı, market, hastane ve otel temalı 3D artırılmış gerçeklik sahneleri oluşturulmuş; Unity-Vuforia altyapısı, Tinkercad tasarımları ve seslendirmelerle yazılım ürünü geliştirilmiştir. Uygulama testlerinde QR kod algılama, model yüklenme süreleri ve pil tüketimi göstergelerinin sınıf içi kullanımına elverişli düzeyde olduğu görülmüştür. Üç İngilizce öğretmeniyle yürütülen nitel durum çalışmasında, öğretmenler uygulamayı içerik ve tasarım nitelikleri, kullanılabilirlik ve eğitsel katkı açısından genel olarak olumlu değerlendirmiş; özellikle senaryoların gerçek hayata uygunluğu ve konuşma becerisine katkı potansiyelini vurgulamışlardır. Bununla birlikte, uygulamanın sürdürülebilirliğini artırmak için mekan ve senaryo çeşitliliğinin artırılması ve oyunlaştırma unsurlarının eklenmesi önerilmiştir. Sonuç olarak, StoryAR uygulamasının ortaokul düzeyinde İngilizce konuşma becerilerini destekleyen ve sınıf içi kullanılabilirliği yüksek bir artırılmış gerçeklik materyali olduğu söylenebilir.
+
+Proje Ana Alanı : Yazılım Proje Tematik Alanı : Artırılmış, Sanal ve Karma Gerçeklik Proje Adı (Başlığı) : StoryAR: İngilizce Konuşma Becerisi Geliştirmeye Yönelik Senaryo Tabanlı Artırılmış Gerçeklik Uygulaması
+
+--
+
+Amaç Bu çalışmanın amacı, ortaokul düzeyinde öğrencilerin günlük yaşamda ihtiyaç duyabilecekleri İngilizce konuşma becerilerini geliştirmeye katkı sağlamak üzere senaryo tabanlı artırılmış gerçeklik destekli bir mobil uygulama geliştirmek ve uygulamanın sınıf içi kullanılabilirliğini incelemektir. Çalışmamızda şu hedefler belirlenmiştir:
+• Ortaokul düzeyinde İngilizce öğretiminde kullanılan geleneksel materyallerin sınırlılıklarını giderecek, konuşma odaklı ve artırılmış gerçeklik destekli bir mobil uygulama geliştirmek,
+• Öğretmen görüşleri aracılığıyla uygulamanın pedagojik uyumunu, sınıf içi kullanılabilirliğini belirlemektir. Bu doğrultuda okul, havaalanı, market, hastane ve otel gibi günlük yaşam senaryolarına yönelik kapsamlı ve etkileşimli bir artırılmış gerçeklik uygulaması geliştirilerek hem öğrencilerin öğrenme süreçlerini desteklemek hem de öğretmenlerin sınıf içi uygulamalarında kullanabilecekleri yeni bir yazılım materyali sunmak amaçlanmıştır.
+--
+
+Problem Durumu Günümüzde İngilizce dili, küresel iletişimin ortak dili olarak bireylerin farklı kültürlerle etkileşim kurmasında ve bilgiye erişiminde vazgeçilmez bir rol oynamakta, bu nedenle dil öğretiminde yenilikçi yaklaşımlara olan ihtiyaç giderek artmaktadır (Ahmed, 2024). Buna karşın, ülkemizde yabancı dil olarak uzun süreli İngilizce eğitimi verilmesine rağmen öğrencilerin özellikle konuşma becerilerinde hedeflenen yeterlik düzeyine erişemediği ve kaygı yaşadığı (Akşit Aşık & Gökçe 2019; Şahin Toptaş, 2023) bilinmektedir. Bu sebeple yabancı dil öğretiminde konuşma becerilerini geliştirecek materyaller önemli görülmekte; artırılmış gerçeklik destekli uygulamalar ön plana çıkmaktadır. Alanyazın, artırılmış gerçekliğin İngilizce öğretiminde özellikle kelime öğrenimi, başarı, dikkat ve güdülenme üzerinde belirgin yararlar sağladığını; artırılmış gerçeklik ile ders işleyenlerin geleneksel yöntemlere kıyasla daha yüksek başarı gösterdiğini ve öğrenmenin kalıcılığının arttığını ortaya koymaktadır (Çakır vd., 2015; Akçayır & Akçayır, 2016; Atasoy vd., 2017). İlkokul düzeyinde geliştirilen artırılmış gerçeklik tabanlı ders materyali tasarımları da ünite içeriklerinin sunumunu zenginleştirmekte, öğrencinin dikkatini çekmekte ve motivasyonunu desteklemektedir (Uysal & Özdemir, 2024; Çınar & Akgün, 2015). Bununla birlikte bu çalışmaların büyük bölümü içerik sunumu ve kelime tanıma odaklı olup; konuşma akıcılığı ve telaffuz gibi sözlü iletişim bileşenlerine doğrudan odaklanan, gerçek yaşam senaryolarında görev temelli konuşma uygulamaları sınırlıdır. İngilizce öğretiminde konuşma becerilerini geliştirecek artırılmış gerçeklik uygulamalarının bulunmaması alanda önemli bir boşluğa işaret etmektedir. Bu boşluk da çalışmamızda problem durumu olarak belirlenmiştir. Bu çalışma, konuşma becerisine odaklanan, gerçek yaşamla bütünleştirilmiş, etkileşimli, sesli bilgilendirme sağlayan artırılmış gerçeklik tabanlı “StoryAR” isimli bir uygulama geliştirilmesine ve değerlendirilmesine odaklanarak alanyazındaki söz konusu boşluğu doldurmaktadır. Bu bağlamda, “Öğretmen görüşlerine göre artırılmış gerçeklik tabanlı konuşma uygulaması StoryAR, ortaokul düzeyi için sınıf içi kullanıma uygun mudur?” sorusuna cevap aranmıştır.
+
+--
+
+Çalışmada, “StoryAR” artırılmış gerçeklik uygulamasının geliştirilmesinde yöntem olarak “Mühendislik Tasarım Süreci” ve aşamaları kullanılmıştır. Geliştirilen uygulama test edildikten sonra, kullanılabilirliğini incelemek amacıyla durum çalışması yapılarak nitel veriler toplanmıştır. Bu doğrultuda, İngilizce öğretmenleriyle yarı yapılandırılmış görüşmeler yapılmıştır.
+--
+
+Araştırma Modeli: Yin’e (2014) göre, durum çalışmasının odağı olayları derinlemesine incelemek olup; bu yöntemde tek bir olay üzerinden inceleme yapmak ise tek durum desenidir. Araştırmada, öğretmen görüşlerini derinlemesine incelemek amacıyla durum çalışması modeli ve tek durum deseninden yararlanılmıştır.
+•
+Çalışma Grubu (Öğretmenler): Araştırmaya ilçemizdeki Bilim ve Sanat Merkezinde görev yapan 1 İngilizce öğretmeni ve ilçemizdeki bir ortaokulda görev yapan 2 İngilizce öğretmeni olmak üzere toplamda 3 öğretmen gönüllü olarak katılmıştır. Araştırmanın yapılabilmesi için izin alınmış olup, katılımcılar gönüllülük esasına göre belirlenmiştir.
+•
+Veri Toplama Aracı: Yarı yapılandırılmış görüşme formu kullanılmıştır. Formda, öğretmenlerin uygulamanın sınıf içinde kullanımı hakkındaki görüşlerini ortaya çıkarmaya yönelik açık uçlu soru yer almıştır. Görüşme formunun kapsam geçerliliği uzman görüşü alınarak sağlanmış ve form son halini almıştır. Yarı yapılandırılmış görüşme formu (Ek-3) Ek belgeler bölümüne yüklenmiştir.
+•
+Uygulama Süreci: Öğretmenlere StoryAR uygulaması tanıtılmış, kısa bir demo ile deneyimlemeleri sağlanmıştır. Daha sonra bireysel görüşmeler yapılmıştır.
+•
+Veri Analizi: Görüşmelerden elde edilen veriler betimsel analiz yöntemiyle çözümlenmiştir. Öğretmen ifadeleri kodlanmış, benzer kodlar bir araya getirilerek temalar oluşturulmuş, bulgular doğrudan alıntılarla desteklenmiştir. Kodlar ortaya çıkarıldıktan sonra bir uzman tarafından değerlendirilerek sonuçlandırılmıştır.
+•
+Sınırlılık: Nitel bulgular, üç öğretmenin görüşleriyle sınırlıdır.
+---
+
+Uygulamanın denenmesi ve test edilmesi süreci sonunda Tablo 2.’de görüldüğü gibi aşağıdaki sayısal veriler bulgulanmıştır.
+Ölçüt
+1.Deneme
+2.Deneme
+3.Deneme
+4.Deneme
+5.Deneme
+Açıklama
+QR Kod Tarama Süresi (saniye)
+1.3
+1.5
+1.4
+1.2
+1.2
+Farklı ışık koşullarında test edildi.
+3D Model Yüklenme Süresi (saniye)
+1.8
+1.9
+1.7
+2.0
+1.8
+Yükleme süresi, cihaza göre değişiklik gösterdi.
+QR Kod Algılama Oranı (%)
+100
+100
+100
+100
+100
+QR kodlarda algılama oranında başarı gözlemlendi.
+Pil Tüketimi (%)
+5
+6
+4
+6
+5
+10 dakikalık pil tüketimi ölçüldü.
+Tablo 2. Uygulama Testi Sayısal Verileri
+b) Öğretmenlerinin StoryAR Artırılmış Gerçeklik Uygulamasına İlişkin Görüş Bulguları
+Öğretmen görüşmelerinden elde edilen veriler Tablo 3.’te görüldüğü gibi betimsel analiz sonucunda, tema ve kod altında toplanmıştır. Bu temalar ve her temaya ait kodlar, tablo şeklinde ve aşağıda öğretmen ifadeleriyle birlikte sunulmuştur.
+Tema
+Kod
+Frekans (f)
+Tema Frekansı
+İçerik ve Tasarım Nitelikleri
+Görsel Tasarım ve Gerçekçilik
+3
+6
+Günlük Hayata Uygunluk
+3
+Uygulamanın Kullanılabilirliği
+Kullanım Kolaylığı ve Erişim
+3
+5
+Sistemin Anlaşılırlığı
+2
+Eğitsel Katkı
+Konuşma Becerisine Katkı
+3
+5
+Pratik ve Motivasyon Ortamı
+2
+Geliştirme Önerileri
+Mekan ve Senaryo Çeşitliliği
+3
+5
+Oyunlaştırma ve Etkileşim
+2
+Toplam
+21
+21
+Tablo 3. StoryAR Uygulaması Öğretmen Görüşleri
+Betimsel analiz ve frekans tablosu sonuçlarına göre:
+i) En sık vurgulanan tema, 6 frekans değeri ile “İçerik ve Tasarım Nitelikleri” olmuştur. Bu tema altında öğretmenlerin tamamı (f=3), görsel tasarımın ve seslerin yeterliliğine değinirken, yine tüm katılımcılar (f=3) senaryoların günlük hayata uygun ve gerçekçi olduğunu belirtmiştir. Bu temaya ait örnek öğretmen görüşleri şöyledir;
+“Hayatımızda kullanabileceğimiz cümleler. Gerçeklik payı var.” (Öğretmen 1)
+“Senaryolar gerçekçi ve günlük kullanıma uygundur.” (Öğretmen 2)
+“Görsel tasarımdaki renkler birbiriyle uyumluydu. Gerçek hayat uyumlu. Gerçek hayatta karşılaşacağım senaryoların içinde olmak bana doğal geldi.” (Öğretmen 3)
+ii) “Uygulamanın Kullanılabilirliği” teması 5 frekans değeri ile ikinci sırada yer almıştır. Öğretmenler uygulamanın teknik açıdan zorlayıcı olmadığını (f=3) ve sistemin yapısının hemen anlaşıldığını (f=2) ifade etmiştir. Bu temaya ait örnek öğretmen görüşleri şöyledir;
+“Program çok anlaşılır ve kolaydı.” (Öğretmen 1)
+“Kolaydı. Uygulamayı hemen çalıştırdım. Karşılaştığım durumları kolaylıkla anladım.” (Öğretmen 2)
+“Çok zor bir uygulama değildi.” (Öğretmen 3)
+iii) “Eğitsel Katkı” teması da 5 frekans ile ortaya çıkmıştır. Katılımcılar uygulamanın en güçlü eğitsel yönü olarak “Konuşma Becerisine Katkı”yı (f=3) göstermiş, ayrıca öğrencilere güvenli bir “Pratik ve Motivasyon Ortamı” (f=2) sağladığını belirtmiştir. Bu temaya ait örnek öğretmen görüşleri şöyledir;
+“Ders içinde ikili veya grup şeklinde konuşma becerisi geliştirmek için uygulanabilir.” (Öğretmen 1)
+“Konuşma becerisini geliştirmede kullanılabilir.” (Öğretmen 2)
+“Bu uygulama öğrencinin konuşma isteğini artıracağını düşünüyorum. Normalde evinde kendi anadili dışında başka bir dil konuşulmadığı için pratik yapmaya elverişli bir ortam oluşturuyor.” (Öğretmen 3)
+iv) “Geliştirme Önerileri” teması 5 frekans ile diğer temalarla benzer şekilde ortaya çıkmıştır. Öğretmenlerin geliştirmeye yönelik en fazla talebi “Mekan ve Senaryo Çeşitliliği” (f=3) (sokak, kafe, pazar) olurken; “Oyunlaştırma ve Etkileşim” (f=2) (puan sistemi, avatar) eklenmesi de önerilmiştir. Bu temaya ait örnek öğretmen görüşleri şöyledir;
+“Sokakta yer yön tarifi eklenebilir. Oyunlaştırma eklenebilir.” (Öğretmen 2)
+“Kafe, otogar, istasyon ve ev de eklenebilir. Daha fazla diyalog eklenebilir.” (Öğretmen 2)
+“Restoran ve pazar senaryolarının eklenmesi uygulamayı zenginleştirecektir. Oyunlaştırma olarak uygulama içi puan, konuştukça avatar geliştirme eklenebilir.” (Öğretmen 1)
+Tablo 3 genel olarak değerlendirildiğinde; uygulamanın içerik ve tasarım açısından güçlü bir temele sahip olduğu ve kullanılabilirliğinin yüksek olduğu görülmektedir. Eğitsel açıdan konuşma becerisini desteklemesi olumlu olarak ifade edilirken; uygulamanın sürdürülebilirliği için içerik zenginleştirme ve oyunlaştırma önerilerinin dikkate alınması gerektiği ortaya çıkmıştır.
+Sonuç ve Tartışma
+Bu çalışmada, ortaokul öğrencilerinin İngilizce konuşma becerilerini geliştirmek amacıyla mühendislik tasarım süreci kullanılarak “StoryAR” isimli artırılmış gerçeklik tabanlı yazılım ürünü geliştirilmiş ve uygulamanın sınıf içi kullanılabilirliği öğretmen görüşleri doğrultusunda incelenmiştir.
+Bulgular genel olarak değerlendirildiğinde, StoryAR uygulamasının ortaokul düzeyinde sınıf içi kullanıma uygun ve teknik açıdan işlevsel bir materyal olduğu söylenebilir. Uygulamanın QR kod tarama süreleri, 3D model yüklenme süreleri, algılama oranı ve pil tüketimi gibi teknik ölçütlerde elde edilen sayısal veriler, farklı koşullarda bile iyi bir performans sergilendiğini göstermektedir. Bu durum, uygulamanın sınıf içinde zaman kaybına yol açmadan, akıcı bir şekilde kullanılabileceğine işaret etmektedir. Yazılım bileşenleri incelendiğinde; artırılmış gerçeklik sahnelerinin gerçekçi bir yapıda tasarlanmış olması, QR kod algılama mekanizması ve üç boyutlu içeriklerin Unity-Vuforia altyapısı ile hazırlanması, sistemin gelecekteki geliştirmelerini kolaylaştıran bir yazılım mimarisi sunduğunu göstermektedir.
+Öğretmen görüşleri uygulamanın “İçerik ve Tasarım Nitelikleri” ile “Gerçek Hayata Uygunluk” konularında başarılı olduğunu ortaya koymuştur. Öğretmenler, senaryoların gerçekçi olduğunu ve öğrencilere güvenli bir pratik ortamı sunduğunu belirtmiştir. Bu sonuç, Soner’in (2007) vurguladığı geleneksel öğretim yöntemlerinin ve materyallerinin yetersizliği sorununa, StoryAR’ın etkili bir alternatif çözüm sunduğunu göstermektedir. Ayrıca Ateş ve Aytekin’in (2020) belirttiği küreselleşen dünyada “işlevsel iletişim kurma” ihtiyacı, uygulamanın sunduğu hastane, otel, havaalanı gibi gerçek yaşam senaryoları ile doğrudan örtüşmektedir.
+Çalışmanın en önemli bulgularından birisi, uygulamanın İngilizce konuşma becerisine katkı sağlayacağının ifade edilmesidir. Literatürde Şahin (2018) tarafından belirtilen uzun süreli eğitime rağmen dil eğitiminin hedeflenen yeterliğe ulaşılamaması ve Akşit Aşık & Gökçe (2019) ile Şahin Toptaş’ın (2023) dikkat çektiği konuşma kaygısı problemleri, StoryAR uygulaması ile giderilmeye çalışılmıştır. Nitekim öğretmenler, uygulamanın öğrencilerin konuşma isteğini artıracağını ve pratik yapmaya elverişli bir ortam sunacağını belirtmiştir. Bu durum, Jesionkowska vd. (2020)’nin artırılmış gerçeklik uygulamalarının öğrencileri isteklendirdiği ve harekete geçirdiği yönündeki görüşleriyle paralellik göstermektedir. Öğretmen görüşlerinde “Geliştirme Önerileri” teması altında daha fazla mekan (sokak, kafe) ve oyunlaştırma (puan, avatar) talepleri öne çıkmıştır. Baran ve Halıcı’nın (2006) çocuk merkezli yaklaşımlar ve teknoloji desteği önerisi dikkate alındığında, ilerleyen çalışmalarda uygulamanın oyunlaştırma ile zenginleştirilmesinin, öğrenci motivasyonunu daha da artıracağı düşünülmektedir. Özellikle talep edilen yeni mekan ve oyunlaştırma unsurlarının, mevcut StoryAR yazılımı mevcut kodları ile genişletilebilecek olması, uygulamanın yazılım açısından güncellemeye açık ve sürdürülebilir bir yapıda tasarlandığını ortaya koymaktadır. Sonuç olarak; artırılmış gerçeklik teknolojisi ile geliştirilen StoryAR uygulaması, teknik sağlamlığı ve eğitsel uygunluğu ile ortaokul İngilizce öğretiminde konuşma becerilerini destekleyen, geleneksel materyallerin sınırlılıklarını aşan ve sınıf içinde kullanılabilirliği
+yüksek bir materyal olarak değerlendirilmiştir.
+--
+Harika, görseldeki tabloyu en güncel haliyle (Awake ve Update dahil) aşağıda senin için listeledim. Bu liste, kodunun çalışma mantığını tam olarak özetliyor:
+
+Yazılımda Kullanılan Fonksiyonlar Listesi
+Awake (Başlangıç Hazırlığı): Kod çalışmaya başladığında gerekli bileşenleri (Kamera, AudioSource vb.) hazırlar.
+
+Update (Sürekli Kontrol): Her karede (frame) ekranı dinler ve dokunma girişlerini anlık olarak takip eder.
+
+Physics.Raycast (Nesne Tespiti): Ekranda dokunulan noktanın hangi 3D nesneye isabet ettiğini belirler.
+
+SceneManager.LoadScene (Sahne Geçişi): Senaryolar arası geçişi sağlar, yani bir sahneden diğerine geçiş yapar.
+
+AudioSource.Play (Ses Çalma): Atanan ses dosyalarını (diyalog, efekt vb.) oynatır.
+
+Vector3.Lerp (Akıcı Sürükleme): Nesne hareketlerini yumuşatarak bir noktadan diğerine pürüzsüz geçiş sağlar.
+
+Input.GetTouch (Dokunma Algılama): Mobil ekrandan gelen dokunmatik verileri (parmak hareketlerini) toplar.
+
+Time.time (Çift Dokunma Kontrolü): İki dokunuş arasındaki süreyi ölçerek çift tıklama yapılıp yapılmadığını anlar.
+
+Application.Quit (Çıkış Yapma): Uygulamanın/oyunun tamamen kapatılmasını sağlar.
+
+veritabanı unity içine gömülüdür. Vuforia ile oluşturulmuştur target managere qr kod eklenerek.
+
+    `;
+
+    async function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const container = document.getElementById('chat-messages');
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        container.innerHTML += `<div class="message user-msg">${text}</div>`;
+        input.value = '';
+        container.scrollTop = container.scrollHeight;
+
+        const loadingId = "loading-" + Date.now();
+        container.innerHTML += `<div class="message bot-msg" id="${loadingId}">...</div>`;
+        container.scrollTop = container.scrollHeight;
+
+        try {
+            const response = await fetch("https://api.deepseek.com/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${DEEPSEEK_API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: "deepseek-chat",
+                    messages: [
+                        {
+                            role: "system",
+                            content: `Sen 'StoryAR' projesinin uzman asistanısın. Kullanıcıya verilen proje verilerine göre cevap ver. KRİTİK KURAL: Cevapların asla 5 cümleyi geçmemeli. VERİLER: ${PROJE_VERILERI}`
+                        },
+                        { role: "user", content: text }
+                    ]
+                })
+            });
+
+            const data = await response.json();
+            const botAnswer = data.choices[0].message.content;
+            document.getElementById(loadingId).innerText = botAnswer;
+
+        } catch (e) {
+            document.getElementById(loadingId).innerText = "Bağlantı sorunu.";
+        }
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function toggleChat() {
+        const win = document.getElementById('chat-window');
+        win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    document.getElementById('chat-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
 
 </body>
 </html>
